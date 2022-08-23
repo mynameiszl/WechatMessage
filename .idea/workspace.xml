@@ -4,7 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="938f8b52-ca8b-484d-b3ac-7079bc949df0" name="Changes" comment="" />
+    <list default="true" id="938f8b52-ca8b-484d-b3ac-7079bc949df0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file/1661264265405.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/建表sql.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/wx/mp/DemoApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/wx/mp/config/CustomAccessDeineHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/wx/mp/config/ScheduledTasks.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/wx/mp/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/wx/mp/controller/IndexController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/wx/mp/controller/SendMessageConeroller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/wx/mp/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/wx/mp/mapper/MsgVOMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/wx/mp/pojo/MsgVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/wx/mp/pojo/Result.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/wx/mp/service/MsgVOService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/wx/mp/service/VxPushMsgService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/wx/mp/service/impl/MsgVOServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/wx/mp/service/impl/VxPushMsgServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/wx/mp/util/DateUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/wx/mp/util/HttpUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/resources/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,6 +51,9 @@
     </option>
   </component>
   <component name="ProjectId" id="2DlFQHYw7yrMOGs33Oa2JIDJBhM" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="false" />
@@ -29,17 +61,38 @@
     <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.4375" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="WechatMessage" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="demo.wx.mp.DemoApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -53,11 +106,27 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1661265750188</updated>
-      <workItem from="1661265752204" duration="791000" />
+      <workItem from="1661265752204" duration="903000" />
+      <workItem from="1661267532843" duration="10000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

@@ -1,0 +1,56 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.banner{
+    background: #153e50;
+    box-shadow: rgb(0 0 0 / 10%) 0px 2px 4px 0px;
+    box-sizing: border-box;
+    height: 60px;
+    z-index: 99;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+.navbar-brand {
+    display: inline-block;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+}
+.logo-text {
+    font-size: 18px;
+    color: rgb(24, 24, 24);
+    height: 50px;
+    line-height: 50px;
+}
+header > .navbar {
+    color: #fff;
+    display: flex;
+    padding: 5px 20px;
+    border-radius: 0;
+}
+.logo{
+    width: 40px;
+    height: 40px;
+    border-radius: 10%;
+}
+.logo>img{
+    width: 40px;
+    height: 40px;
+}
+.box{
+    margin-top: 60px;
+}
+.logout{
+    display: inline-block;
+    line-height: 50px;
+    color: #f0f0f0;
+}
+.banner .el-row{
+    position: absolute;
+    right: 20px;
+}

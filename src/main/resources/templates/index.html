@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+<div id="app" v-loading="loading">
+    <header class="banner">
+        <nav class="navbar navbar-expand-md">
+            <a class="navbar-brand " th:href="'/index'">
+                <el-image class="logo" :src="logo">
+                    <div slot="placeholder" class="image-slot">
+                        加载中<span class="dot">...</span>
+                    </div>
+                </el-image>
+            </a>
+            <span style="color: #FFFFFF;" class="logo-text">公众号天气发送管理</span>
+            <el-row>
+                <a href="/logout" class="logout">
+                    <i class="el-icon-switch-button">退出登录</i>
+                </a>
+            </el-row>
+        </nav>
+    </header>
+    <div class="box">
+        <template>
+            <el-table  border :data="user" style="width: 100%">
+                <el-table-column
+                        prop="name"
+                        width="100"
+                        label="昵称">
+                </el-table-column>
+                <el-table-column
+                        prop="city"
+                        width="100"
+                        label="城市">
+                </el-table-column>
+                <el-table-column label="消息状态" width="100">
+                    <template slot-scope="scope">
+                        <el-button v-if="scope.row.disable" type="success" icon="el-icon-check" circle></el-button>
+                        <el-button v-if="!scope.row.disable" type="danger" icon="el-icon-close" circle></el-button>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        prop="openId"
+                        label="账号">
+                </el-table-column>
+                <el-table-column
+                        prop="templateId"
+                        label="模板">
+                </el-table-column>
+                <el-table-column label="操作" :width="widths">
+                    <template slot-scope="scope">
+                        <el-button type="primary" :loading="scope.row.loading" v-on:click="sendMessageById(scope.row.openId,scope.$index)">发送消息</el-button>
+                        <el-button v-if="role" type="info" v-on:click="dialogVisible=true,
+                        ruleForm.name=scope.row.name,
+                        ruleForm.city=scope.row.city,
+                        ruleForm.openId=scope.row.openId,
+                        ruleForm.templateId=scope.row.templateId,
+                        ruleForm.disable=scope.row.disable,type='修改'">修改</el-button>
+                        <el-button v-if="role" type="warning"  v-on:click="dialogVisible=true,type='新增'">添加</el-button>
+                        <el-button v-if="role" type="danger" v-on:click="deleteById(scope.row.openId)">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </template>
+        <el-dialog title="提示" :visible.sync="dialogVisible" width="40%">
+            <el-form :model="ruleForm"  status-icon  ref="ruleForm" label-width="100px" class="demo-ruleForm">
+                <el-form-item label="昵称" prop="name" :rules="[{ required: true, message: '昵称不能为空'},]">
+                    <el-input  v-model="ruleForm.name" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="城市" prop="city" :rules="[{ required: true, message: '城市不能为空'},]">
+                    <el-input  v-model="ruleForm.city" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="账号" prop="openId" :rules="[{ required: true, message: '账号不能为空'},]">
+                    <el-input v-model="ruleForm.openId"></el-input>
+                </el-form-item>
+                <el-form-item label="模板" prop="templateId" :rules="[{ required: true, message: '发送模板ID'},]">
+                    <el-input v-model="ruleForm.templateId"></el-input>
+                </el-form-item>
+                <el-form-item label="接收消息"  prop="disable" :rules="[{ required: true, message: '接收状态不能为空'},]">
+                    <el-select style="width: 100%" v-model="ruleForm.disable">
+                        <el-option label="接收" value="true"></el-option>
+                        <el-option label="不接受" value="false"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item >
+                    <el-button style="width: 100%" type="primary" @click="submitForm('ruleForm')">确 定</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
+    </div>
+</div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            user:[],
+            currentUser:'',
+            role:false,
+            loading:true,
+            butLoading:false,
+            dialogVisible:false,
+            widths:'',
+            type:'',
+            logo: '/images/logo.png',
+            ruleForm: {
+                name: '',
+                city: '',
+                openId: '',
+                templateId: '',
+                disable:'',
+            },
+        },
+        mounted: function () {
+            this.queryUserAll();
+            this.getCurrentUser();
+        },
+        methods: {
+            queryUserAll:function (){
+                let _this=this;
+                $.post("/public/queryUserAll",function (res){
+                    if (res.code==200){
+                        _this.user =  res.data;
+                        _this.loading=false;
+                    }
+                })
+            },
+            getCurrentUser:function (){
+                let _this=this;
+                $.post("/public/getCurrentUser",function (res){
+                    if (res.code==200){
+                        _this.currentUser =  res.data;
+                        for (let i = 0; i < res.data.authorities.length; i++) {
+                            if (res.data.authorities[i].authority==="ROLE_ADMIN"){
+                               _this.role=true;
+                            }
+                        }
+                        if (_this.role==false){
+                            _this.widths='130px';
+                        }
+                    }
+                })
+
+            },
+            submitForm:function (formName) {
+                let _this=this;
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        if (_this.type==="修改"){
+                            $.post("/admin/updataUser",
+                                {
+                                    name:_this.ruleForm.name,
+                                    city:_this.ruleForm.city,
+                                    openId:_this.ruleForm.openId,
+                                    templateId:_this.ruleForm.templateId,
+                                    disable:_this.ruleForm.disable
+                                },
+                                function (res) {
+                                    _this.dialogVisible=false;
+                                    if (res.code==200){
+                                        _this.$message({
+                                            message: res.message,
+                                            type: 'success'
+                                        });
+                                        setTimeout(function () {
+                                            location.replace(document.referrer);
+                                        },1000)
+                                    }else {
+                                        _this.$message.error(res.message);
+                                    }
+                                }
+                            )
+                        }else {
+                            $.post("/admin/insert",
+                                {
+                                    name:_this.ruleForm.name,
+                                    city:_this.ruleForm.city,
+                                    openId:_this.ruleForm.openId,
+                                    templateId:_this.ruleForm.templateId,
+                                    disable:_this.ruleForm.disable
+                                },
+                                function (res) {
+                                    _this.dialogVisible=false;
+                                    if (res.code==200){
+                                        _this.$message({
+                                            message: res.message,
+                                            type: 'success'
+                                        });
+                                        setTimeout(function () {
+                                            location.replace(document.referrer);
+                                        },1000)
+                                    }else {
+                                        _this.$message.error(res.message);
+                                    }
+                                }
+                            )
+                        }
+                    } else {
+                        _this.$message.error("验证失败");
+                        return false;
+                    }
+                });
+            },
+            deleteById:function (openId){
+                let _this=this;
+                _this.$confirm('此操作将永久删除该用户信息, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    $.post("/admin/deleteById",
+                        {openId:openId},
+                        function (res) {
+                            if (res.code==200){
+                                _this.$message({
+                                    message: res.message,
+                                    type: 'success'
+                                });
+                                setTimeout(function () {
+                                    location.replace(document.referrer);
+                                },1000)
+                            }else {
+                                _this.$message.error(res.message);
+                            }
+                        }
+                    )
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
+                });
+
+            },
+            sendMessageById:function (openId,index){
+                let _this=this;
+                _this.user[index].loading=true;
+                $.post("/public/sendMessage",
+                    {openId:openId},
+                    function (res) {
+                        if (res.code==200){
+                            _this.$message({
+                                message: res.message,
+                                type: 'success'
+                            });
+                        }else {
+                            _this.$message.error(res.message);
+                        }
+                        _this.user[index].loading=false;
+                    }
+                )
+            },
+        }
+    })
+</script>
+</html>
