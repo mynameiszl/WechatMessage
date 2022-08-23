@@ -13,6 +13,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="339fa176-643b-42b9-8f33-500c298d3441" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -79,7 +82,7 @@
       <updated>1661265750188</updated>
       <workItem from="1661265752204" duration="903000" />
       <workItem from="1661267532843" duration="10000" />
-      <workItem from="1661267548788" duration="695000" />
+      <workItem from="1661267548788" duration="1000000" />
     </task>
     <task id="LOCAL-00001" summary="初始化项目">
       <created>1661267635135</created>
@@ -95,7 +98,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661267966224</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="初始化项目">
+      <created>1661268540697</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1661268540697</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
