@@ -29,7 +29,7 @@
 
 2. 运行DemoApplication，访问 ：`localhost:8087`
 
-3. 登录账号，普通账号为：test 密码：123456，管理员账号：admin 密码：123456，可自行在src\main\java\demo.wx.mp.config.SecurityConfig.java   37行和39行处修改
+3. 登录账号，普通账号为：test 密码：123456@，管理员账号：admin 密码：zl206518，可自行在src\main\java\demo.wx.mp.config.SecurityConfig.java   37行和39行处修改
 
 4.测试公众地址 https://mp.weixin.qq.com/debug/cgi-bin/sandboxinfo?action=showinfo&t=sandbox/index
 
